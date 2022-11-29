@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\guisi\\OneDrive - FUNDACAO CULTURAL DE ARAXA\\SIF\\4oP\\Desen App e Cloud\\GitH1\\2022_desenv_web-main\\Aula01.Domain\\Aula01.Domain.csproj": {}
+    "D:\\GITHUB\\API-TDE\\Aula01.Domain\\Aula01.Domain.csproj": {}
   },
   "projects": {
-    "C:\\Users\\guisi\\OneDrive - FUNDACAO CULTURAL DE ARAXA\\SIF\\4oP\\Desen App e Cloud\\GitH1\\2022_desenv_web-main\\Aula01.Domain\\Aula01.Domain.csproj": {
+    "D:\\GITHUB\\API-TDE\\Aula01.Domain\\Aula01.Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\guisi\\OneDrive - FUNDACAO CULTURAL DE ARAXA\\SIF\\4oP\\Desen App e Cloud\\GitH1\\2022_desenv_web-main\\Aula01.Domain\\Aula01.Domain.csproj",
+        "projectUniqueName": "D:\\GITHUB\\API-TDE\\Aula01.Domain\\Aula01.Domain.csproj",
         "projectName": "Aula01.Domain",
-        "projectPath": "C:\\Users\\guisi\\OneDrive - FUNDACAO CULTURAL DE ARAXA\\SIF\\4oP\\Desen App e Cloud\\GitH1\\2022_desenv_web-main\\Aula01.Domain\\Aula01.Domain.csproj",
+        "projectPath": "D:\\GITHUB\\API-TDE\\Aula01.Domain\\Aula01.Domain.csproj",
         "packagesPath": "C:\\Users\\guisi\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\guisi\\OneDrive - FUNDACAO CULTURAL DE ARAXA\\SIF\\4oP\\Desen App e Cloud\\GitH1\\2022_desenv_web-main\\Aula01.Domain\\obj\\",
+        "outputPath": "D:\\GITHUB\\API-TDE\\Aula01.Domain\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

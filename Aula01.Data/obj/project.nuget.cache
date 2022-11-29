@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "4sCo6VQfq0QCmdq7cByQFc3LPmp23HSXFxSIkfECHSOYkNjx+lhJmlLfe/PzH0dRzAXPMnTy9czOC4Yk9BhAVw==",
+  "dgSpecHash": "9/k9P+slVj2vylXIkz5ij5AssuujMjiLMKq36jp0vV9DcVfzrRxOaBYQWEcpUJhO+A0zX6MBQD+ha9EspTf9Rg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\guisi\\OneDrive - FUNDACAO CULTURAL DE ARAXA\\SIF\\4oP\\Desen App e Cloud\\GitH1\\2022_desenv_web-main\\Aula01.Data\\Aula01.Data.csproj",
+  "projectFilePath": "D:\\GITHUB\\API-TDE\\Aula01.Data\\Aula01.Data.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\guisi\\.nuget\\packages\\fluentvalidation\\11.2.1\\fluentvalidation.11.2.1.nupkg.sha512",
     "C:\\Users\\guisi\\.nuget\\packages\\microsoft.aspnetcore.http.abstractions\\2.2.0\\microsoft.aspnetcore.http.abstractions.2.2.0.nupkg.sha512",

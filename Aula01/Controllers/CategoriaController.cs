@@ -13,7 +13,7 @@ namespace Aula01.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    [Authorize]
+    //[Authorize]
     public class CategoriaController : Controller
     {
         private readonly ICategoriaRepository _categoriaRepository;
@@ -75,7 +75,7 @@ namespace Aula01.Controllers
         }
 
         //[Authorize]
-        [Route("Obter Por ID")]
+        [Route("ObterPorID")]
         [HttpGet]
         public IActionResult ObterPorId(int id)
         {
@@ -91,7 +91,7 @@ namespace Aula01.Controllers
         }
 
         //[Authorize]
-        [Route("Obter Todos")]
+        [Route("ObterTodos")]
         [HttpGet]
         public IActionResult ObterTodos()
         {
