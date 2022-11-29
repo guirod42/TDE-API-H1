@@ -49,16 +49,6 @@ namespace Aula01.Data.Repository
 			_context.Remove(id);
 		}
 
-		private void Gravar()
-		{
-			_context.SaveChanges();
-		}
-
-		public void Dispose()
-		{
-			_context.Dispose();
-		}
-
         public void Ativar(Produto produto)
         {
             produto.On();
@@ -72,5 +62,19 @@ namespace Aula01.Data.Repository
             _context.Produto.Update(produto);
             Gravar();
         }
+
+
+
+
+
+		private void Gravar()
+		{
+			_context.SaveChanges();
+		}
+
+		public void Dispose()
+		{
+			_context.Dispose();
+		}
     }
 }

@@ -17,25 +17,49 @@ namespace Aula01.Data.Repository
         }
 
         public Usuario Autenticar(Usuario usuario)
-        {   
-            
-		    var buscaUsuario = _context.Usuario.Where(p => p.UserName == usuario.UserName 
-                                                && p.Password == usuario.Password).FirstOrDefault();
-            
-            if (buscaUsuario != null) return new Usuario(usuario.UserName, usuario.Password);
-            
-            
-            /*
-            if (usuario.UserName == "humberto" 
-                && usuario.Password == "123456789")
-            {
-                return new Usuario(usuario.UserName, usuario.Password);
-            }
-            */
+        {
             return _context.Usuario.Where(p => p.UserName == usuario.UserName
                 && p.Password == usuario.Password).FirstOrDefault();
+        }
 
-            //return _context.Produto.Where(p => p.Id == id).FirstOrDefault();
+        public void Cadastrar(Usuario usuario)
+        {
+            _context.Usuario.Add(usuario);
+            Gravar();
+        }
+
+        public void Atualizar(Usuario usuario)
+        {
+            _context.Usuario.Update(usuario);
+            Gravar();
+        }
+
+        public void Ativar(Usuario usuario)
+        {
+            usuario.On();
+            _context.Usuario.Update(usuario);
+            Gravar();
+        }
+
+        public void Desativar(Usuario usuario)
+        {
+            usuario.Off();
+            _context.Usuario.Update(usuario);
+            Gravar();
+        }
+
+        public Usuario Localizar(string user)
+        {
+            return _context.Usuario.Where(p => p.UserName == user).FirstOrDefault();
+        }
+
+
+
+
+
+        private void Gravar()
+        {
+            _context.SaveChanges();
         }
     }
 }

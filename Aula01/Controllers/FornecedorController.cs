@@ -112,7 +112,7 @@ namespace Aula01.Controllers
             return Ok(new { status = 200, message = "Fornecedor Inativado com sucesso!" });
         }
 
-        //[Authorize]
+        [Authorize]
         [Route("ObterporID")]
         [HttpGet]
         public IActionResult ObterPorId(int id)

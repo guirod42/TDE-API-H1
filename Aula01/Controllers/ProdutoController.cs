@@ -96,7 +96,7 @@ namespace Aula01.Controllers
             return Ok(new { status = 200, message = "Produto Inativado com sucesso!" });
         }
 
-        //[Authorize]
+        [Authorize]
         [Route("ObterporID")]
         [HttpGet]
 		public IActionResult ObterPorId(int id)

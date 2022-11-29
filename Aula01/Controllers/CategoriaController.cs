@@ -74,7 +74,7 @@ namespace Aula01.Controllers
             return Ok(new { status = 200, message = "Categoria Inativada com sucesso!" });
         }
 
-        //[Authorize]
+        [Authorize]
         [Route("ObterPorID")]
         [HttpGet]
         public IActionResult ObterPorId(int id)
