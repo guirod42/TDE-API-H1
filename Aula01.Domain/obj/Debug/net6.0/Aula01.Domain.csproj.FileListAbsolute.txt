@@ -22,3 +22,15 @@ C:\Users\guilhermerodrigues\OneDrive - FUNDACAO CULTURAL DE ARAXA\SIF\4oP\Desen 
 C:\Users\guilhermerodrigues\OneDrive - FUNDACAO CULTURAL DE ARAXA\SIF\4oP\Desen App e Cloud\GitH1\2022_desenv_web-main\Aula01.Domain\obj\Debug\net6.0\refint\Aula01.Domain.dll
 C:\Users\guilhermerodrigues\OneDrive - FUNDACAO CULTURAL DE ARAXA\SIF\4oP\Desen App e Cloud\GitH1\2022_desenv_web-main\Aula01.Domain\obj\Debug\net6.0\Aula01.Domain.pdb
 C:\Users\guilhermerodrigues\OneDrive - FUNDACAO CULTURAL DE ARAXA\SIF\4oP\Desen App e Cloud\GitH1\2022_desenv_web-main\Aula01.Domain\obj\Debug\net6.0\ref\Aula01.Domain.dll
+D:\GITHUB\API-TDE\Aula01.Domain\bin\Debug\net6.0\Aula01.Domain.deps.json
+D:\GITHUB\API-TDE\Aula01.Domain\bin\Debug\net6.0\Aula01.Domain.dll
+D:\GITHUB\API-TDE\Aula01.Domain\bin\Debug\net6.0\Aula01.Domain.pdb
+D:\GITHUB\API-TDE\Aula01.Domain\obj\Debug\net6.0\Aula01.Domain.csproj.AssemblyReference.cache
+D:\GITHUB\API-TDE\Aula01.Domain\obj\Debug\net6.0\Aula01.Domain.GeneratedMSBuildEditorConfig.editorconfig
+D:\GITHUB\API-TDE\Aula01.Domain\obj\Debug\net6.0\Aula01.Domain.AssemblyInfoInputs.cache
+D:\GITHUB\API-TDE\Aula01.Domain\obj\Debug\net6.0\Aula01.Domain.AssemblyInfo.cs
+D:\GITHUB\API-TDE\Aula01.Domain\obj\Debug\net6.0\Aula01.Domain.csproj.CoreCompileInputs.cache
+D:\GITHUB\API-TDE\Aula01.Domain\obj\Debug\net6.0\Aula01.Domain.dll
+D:\GITHUB\API-TDE\Aula01.Domain\obj\Debug\net6.0\refint\Aula01.Domain.dll
+D:\GITHUB\API-TDE\Aula01.Domain\obj\Debug\net6.0\Aula01.Domain.pdb
+D:\GITHUB\API-TDE\Aula01.Domain\obj\Debug\net6.0\ref\Aula01.Domain.dll

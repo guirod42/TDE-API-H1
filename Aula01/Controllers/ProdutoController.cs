@@ -97,7 +97,7 @@ namespace Aula01.Controllers
         }
 
         //[Authorize]
-        [Route("Obter por ID")]
+        [Route("ObterporID")]
         [HttpGet]
 		public IActionResult ObterPorId(int id)
 		{
@@ -113,7 +113,7 @@ namespace Aula01.Controllers
 		}
 
         //[Authorize]
-        [Route("Obter Todos")]
+        [Route("ObterTodos")]
 		[HttpGet]
 		public IActionResult ObterTodos()
 		{

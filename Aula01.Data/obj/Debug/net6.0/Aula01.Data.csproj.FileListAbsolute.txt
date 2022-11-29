@@ -28,3 +28,18 @@ C:\Users\guilhermerodrigues\OneDrive - FUNDACAO CULTURAL DE ARAXA\SIF\4oP\Desen 
 C:\Users\guilhermerodrigues\OneDrive - FUNDACAO CULTURAL DE ARAXA\SIF\4oP\Desen App e Cloud\GitH1\2022_desenv_web-main\Aula01.Data\obj\Debug\net6.0\refint\Aula01.Data.dll
 C:\Users\guilhermerodrigues\OneDrive - FUNDACAO CULTURAL DE ARAXA\SIF\4oP\Desen App e Cloud\GitH1\2022_desenv_web-main\Aula01.Data\obj\Debug\net6.0\Aula01.Data.pdb
 C:\Users\guilhermerodrigues\OneDrive - FUNDACAO CULTURAL DE ARAXA\SIF\4oP\Desen App e Cloud\GitH1\2022_desenv_web-main\Aula01.Data\obj\Debug\net6.0\ref\Aula01.Data.dll
+D:\GITHUB\API-TDE\Aula01.Data\bin\Debug\net6.0\Aula01.Data.deps.json
+D:\GITHUB\API-TDE\Aula01.Data\bin\Debug\net6.0\Aula01.Data.dll
+D:\GITHUB\API-TDE\Aula01.Data\bin\Debug\net6.0\Aula01.Data.pdb
+D:\GITHUB\API-TDE\Aula01.Data\bin\Debug\net6.0\Aula01.Domain.dll
+D:\GITHUB\API-TDE\Aula01.Data\bin\Debug\net6.0\Aula01.Domain.pdb
+D:\GITHUB\API-TDE\Aula01.Data\obj\Debug\net6.0\Aula01.Data.csproj.AssemblyReference.cache
+D:\GITHUB\API-TDE\Aula01.Data\obj\Debug\net6.0\Aula01.Data.GeneratedMSBuildEditorConfig.editorconfig
+D:\GITHUB\API-TDE\Aula01.Data\obj\Debug\net6.0\Aula01.Data.AssemblyInfoInputs.cache
+D:\GITHUB\API-TDE\Aula01.Data\obj\Debug\net6.0\Aula01.Data.AssemblyInfo.cs
+D:\GITHUB\API-TDE\Aula01.Data\obj\Debug\net6.0\Aula01.Data.csproj.CoreCompileInputs.cache
+D:\GITHUB\API-TDE\Aula01.Data\obj\Debug\net6.0\Aula01.Data.csproj.CopyComplete
+D:\GITHUB\API-TDE\Aula01.Data\obj\Debug\net6.0\Aula01.Data.dll
+D:\GITHUB\API-TDE\Aula01.Data\obj\Debug\net6.0\refint\Aula01.Data.dll
+D:\GITHUB\API-TDE\Aula01.Data\obj\Debug\net6.0\Aula01.Data.pdb
+D:\GITHUB\API-TDE\Aula01.Data\obj\Debug\net6.0\ref\Aula01.Data.dll
