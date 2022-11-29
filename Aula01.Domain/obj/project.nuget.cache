@@ -1,0 +1,13 @@
+{
+  "version": 2,
+  "dgSpecHash": "ZgZBVJeJIqB9S1i10Xzqi6eXXWCK70zsbRkiCv8a+rsFfmAbLquELYCzcUxVYJhmv262k5if53zuacwbv2eh5Q==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\guisi\\OneDrive - FUNDACAO CULTURAL DE ARAXA\\SIF\\4oP\\Desen App e Cloud\\GitH1\\2022_desenv_web-main\\Aula01.Domain\\Aula01.Domain.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\guisi\\.nuget\\packages\\fluentvalidation\\11.2.1\\fluentvalidation.11.2.1.nupkg.sha512",
+    "C:\\Users\\guisi\\.nuget\\packages\\microsoft.aspnetcore.http.features\\5.0.17\\microsoft.aspnetcore.http.features.5.0.17.nupkg.sha512",
+    "C:\\Users\\guisi\\.nuget\\packages\\microsoft.extensions.primitives\\5.0.1\\microsoft.extensions.primitives.5.0.1.nupkg.sha512",
+    "C:\\Users\\guisi\\.nuget\\packages\\system.io.pipelines\\5.0.2\\system.io.pipelines.5.0.2.nupkg.sha512"
+  ],
+  "logs": []
+}
