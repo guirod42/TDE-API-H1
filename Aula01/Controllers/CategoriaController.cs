@@ -3,6 +3,7 @@ using Aula01.Domain;
 using Aula01.Domain.Interfaces;
 using Aula01.Domain.Validations;
 using Aula01.Model;
+using Aula01.Services;
 using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -16,15 +17,11 @@ namespace Aula01.Controllers
     //[Authorize]
     public class CategoriaController : Controller
     {
-        private readonly ICategoriaRepository _categoriaRepository;
-        private IMapper _mapper;
+        private readonly ICategoriaService _categoriaService;
 
-        public CategoriaController(
-            ICategoriaRepository categoriaRepository,
-            IMapper mapper)
+        public CategoriaController(ICategoriaService categoriaService)
         {
-            _categoriaRepository = categoriaRepository;
-            _mapper = mapper;
+            _categoriaService = categoriaService;
         }
 
         //[Authorize]
@@ -33,10 +30,19 @@ namespace Aula01.Controllers
         public IActionResult Cadastrar(
             [FromForm] CategoriaViewModel categoria)
         {
-            if (!ModelState.IsValid) return BadRequest(ModelState);
-            categoria.Ativo = true;
-            _categoriaRepository.Cadastrar(_mapper.Map<Categoria>(categoria));
-            return Ok(new { success = true, mensagem = "Categoria Cadastrada com sucesso" });
+            try
+            {
+                if (!ModelState.IsValid) return BadRequest(ModelState);
+
+                _categoriaService.Cadastrar(categoria);
+
+                return Ok(new { success = true, mensagem = "Categoria Cadastrada com sucesso" });
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { success = false, mensagem = ex.Message });
+            }
+            
         }
 
         //[Authorize]
@@ -45,10 +51,10 @@ namespace Aula01.Controllers
         public IActionResult Atualizar(int id, string nome)
         {
             if (!ModelState.IsValid) return BadRequest(ModelState);
-            var buscarCategoria = _categoriaRepository.ObterCategoriaId(id);
-            if (buscarCategoria == null) return NotFound(new { status = 404, message = "Categoria não encontrada" });
-            buscarCategoria.Nome = nome;
-            _categoriaRepository.Atualizar(_mapper.Map<Categoria>(buscarCategoria));
+            //var buscarCategoria = _categoriaRepository.ObterCategoriaId(id);
+            //if (buscarCategoria == null) return NotFound(new { status = 404, message = "Categoria não encontrada" });
+            //buscarCategoria.Nome = nome;
+            //_categoriaRepository.Atualizar(_mapper.Map<Categoria>(buscarCategoria));
             return Ok(new { status = 200, message = "Categoria Atualizada com sucesso!" });
         }
 
@@ -57,9 +63,9 @@ namespace Aula01.Controllers
         [HttpPut]
         public IActionResult Ativar(int id)
         {
-            var buscarCategoria = _categoriaRepository.ObterCategoriaId(id);
-            if (buscarCategoria == null) return NotFound(new { status = 404, message = "Categoria não encontrada" });
-            _categoriaRepository.Ativar(buscarCategoria);
+            //var buscarCategoria = _categoriaRepository.ObterCategoriaId(id);
+            //if (buscarCategoria == null) return NotFound(new { status = 404, message = "Categoria não encontrada" });
+            //_categoriaRepository.Ativar(buscarCategoria);
             return Ok(new { status = 200, message = "Categoria Ativada com sucesso!" });
         }
 
@@ -68,9 +74,9 @@ namespace Aula01.Controllers
         [HttpPut]
         public IActionResult Inativar(int id)
         {
-            var buscarCategoria = _categoriaRepository.ObterCategoriaId(id);
-            if (buscarCategoria == null) return NotFound(new { status = 404, message = "Categoria não encontrada" });
-            _categoriaRepository.Desativar(buscarCategoria);
+            //var buscarCategoria = _categoriaRepository.ObterCategoriaId(id);
+            //if (buscarCategoria == null) return NotFound(new { status = 404, message = "Categoria não encontrada" });
+            //_categoriaRepository.Desativar(buscarCategoria);
             return Ok(new { status = 200, message = "Categoria Inativada com sucesso!" });
         }
 
@@ -79,13 +85,16 @@ namespace Aula01.Controllers
         [HttpGet]
         public IActionResult ObterPorId(int id)
         {
-            var pesquisa = _mapper.Map<CategoriaViewModel>(_categoriaRepository.ObterCategoriaId(id));
-            if (pesquisa == null) return NotFound(new { status = 404, message = "Categoria não encontrada" });
+            //// vai pro service
+            ////var pesquisa = _mapper.Map<CategoriaViewModel>(_categoriaRepository.ObterCategoriaId(id));
+            ////if (pesquisa == null) return NotFound(new { status = 404, message = "Categoria não encontrada" });
+
+
             return Ok(
                 new
                 {
-                    success = true,
-                    produto = pesquisa
+                    success = true
+                    //,produto = pesquisa
                 }
                 );
         }
@@ -99,7 +108,7 @@ namespace Aula01.Controllers
                 new
                 {
                     success = true,
-                    listaProdutos = _mapper.Map<IEnumerable<CategoriaViewModel>>(_categoriaRepository.ObterTodos())
+                 //   listaProdutos = _mapper.Map<IEnumerable<CategoriaViewModel>>(_categoriaRepository.ObterTodos())
                 }
                 );
         }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Aula01.Domain.Interfaces
 {
-    public interface ICategoriaRepository
+    public interface ICategoriaRepository // : IDisposable
     {
         public void Cadastrar(Categoria categoria);
         public void Atualizar(Categoria categoria);
