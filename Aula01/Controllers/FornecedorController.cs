@@ -4,6 +4,7 @@ using Aula01.Domain.Enum;
 using Aula01.Domain.Interfaces;
 using Aula01.Domain.Validations;
 using Aula01.Model;
+using Aula01.Services;
 using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -17,7 +18,14 @@ namespace Aula01.Controllers
     [Route("[controller]")]
     public class FornecedorController : Controller
 	{
-		private readonly IFornecedorRepository _fornecedorRepository;
+        private readonly IFornecedorService _fornecedorService;
+
+        public FornecedorController(IFornecedorService fornecedorService)
+        {
+            _fornecedorService = fornecedorService;
+        }
+
+        private readonly IFornecedorRepository _fornecedorRepository;
 		private IMapper _mapper;
 		
 		public FornecedorController(
@@ -85,7 +93,7 @@ namespace Aula01.Controllers
             }
 
             _fornecedorRepository.Atualizar(_mapper.Map<Fornecedor>(buscarFornecedor));
-            return Ok(new { status = 200, message = "Fornecedor Atualizado com sucesso!" });
+            return Ok(new { status = 200, message = "Fornecedor atualizado com sucesso!" });
         }
 
         //[Authorize]
@@ -93,11 +101,18 @@ namespace Aula01.Controllers
         [HttpPut]
         public IActionResult Ativar(int id)
         {
-            var buscarFornecedor = _fornecedorRepository.ObterFornecedorId(id);
-            if (buscarFornecedor == null) return NotFound(new { status = 404, message = "Fornecedor não encontrado" });
+            try
+            {
+                if (!ModelState.IsValid) return BadRequest(ModelState);
 
-            _fornecedorRepository.Ativar(buscarFornecedor);
-            return Ok(new { status = 200, message = "Fornecedor Ativado com sucesso!" });
+                _fornecedorService.Ativar(id);
+
+                return Ok(new { status = 200, message = "Fornecedor ativado com sucesso!" });
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { success = false, mensagem = ex.Message });
+            }
         }
 
         //[Authorize]
@@ -105,11 +120,18 @@ namespace Aula01.Controllers
         [HttpPut]
         public IActionResult Inativar(int id)
         {
-            var buscarCategoria = _fornecedorRepository.ObterFornecedorId(id);
-            if (buscarCategoria == null) return NotFound(new { status = 404, message = "Fornecedor não encontrado" });
+            try
+            {
+                if (!ModelState.IsValid) return BadRequest(ModelState);
 
-            _fornecedorRepository.Desativar(buscarCategoria);
-            return Ok(new { status = 200, message = "Fornecedor Inativado com sucesso!" });
+                _fornecedorService.Desativar(id);
+
+                return Ok(new { status = 200, message = "Fornecedor ativado com sucesso!" });
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { success = false, mensagem = ex.Message });
+            }
         }
 
         [Authorize]
@@ -117,15 +139,21 @@ namespace Aula01.Controllers
         [HttpGet]
         public IActionResult ObterPorId(int id)
         {
-            var pesquisa = _mapper.Map<FornecedorViewModel>(_fornecedorRepository.ObterFornecedorId(id));
-            if (pesquisa == null) return NotFound(new { status = 404, message = "Fornecedor não encontrado" });
-            return Ok(
-                new
-                {
-                    success = true,
-                    fornecedor = pesquisa
-                }
-                );
+            try
+            {
+                var buscarFornecedor = _fornecedorService.ObterFornecedorId(id);
+                return Ok(
+                    new
+                    {
+                        success = true,
+                        categoria = buscarFornecedor
+                    }
+                    );
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { success = false, mensagem = ex.Message });
+            }
         }
 
         //[Authorize]
@@ -133,13 +161,21 @@ namespace Aula01.Controllers
         [HttpGet]
         public IActionResult ObterTodos()
         {
-            return Ok(
-                new
-                {
-                    success = true,
-                    listaFornecedeores = _mapper.Map<IEnumerable<FornecedorViewModel>>(_fornecedorRepository.ObterTodos())
-                }
-                );
+            try
+            {
+                var fornecedores = _fornecedorService.ObterTodos();
+                return Ok(
+                    new
+                    {
+                        success = true,
+                        fornecedore = fornecedores
+                    }
+                    );
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { success = false, mensagem = ex.Message });
+            }
         }
     }
 }

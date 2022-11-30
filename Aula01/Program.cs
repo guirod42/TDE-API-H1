@@ -70,7 +70,7 @@ builder.Services.AddScoped<ICategoriaRepository, CategoriaRepository>();
 builder.Services.AddScoped<IUsuarioRepository, UsuarioRepository>();
 
 builder.Services.AddScoped<ICategoriaService, CategoriaService>();
-
+builder.Services.AddScoped<IFornecedorService, FornecedorService>();
 
 var key = Encoding.ASCII.GetBytes(Settings.Secret);
 builder.Services.AddAuthentication(x =>
