@@ -1,6 +1,4 @@
-﻿
-
-using Aula01.Model;
+﻿using Aula01.Model;
 
 namespace Aula01.Services
 {

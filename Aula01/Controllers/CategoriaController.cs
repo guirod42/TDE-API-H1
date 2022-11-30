@@ -36,7 +36,7 @@ namespace Aula01.Controllers
 
                 _categoriaService.Cadastrar(categoria);
 
-                return Ok(new { success = true, mensagem = "Categoria Cadastrada com sucesso" });
+                return Ok(new { success = true, mensagem = "Categoria cadastrada com sucesso" });
             }
             catch (Exception ex)
             {

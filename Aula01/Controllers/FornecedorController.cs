@@ -10,14 +10,13 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 
-
-
 namespace Aula01.Controllers
 {
     [ApiController]
     [Route("[controller]")]
+    //[Authorize]
     public class FornecedorController : Controller
-	{
+    {
         private readonly IFornecedorService _fornecedorService;
 
         public FornecedorController(IFornecedorService fornecedorService)
@@ -25,49 +24,60 @@ namespace Aula01.Controllers
             _fornecedorService = fornecedorService;
         }
 
-        private readonly IFornecedorRepository _fornecedorRepository;
-		private IMapper _mapper;
-		
-		public FornecedorController(
-			IFornecedorRepository fornecedorRepository,
-			IMapper mapper)
-		{
-			_fornecedorRepository = fornecedorRepository;
-			_mapper = mapper;
-		}
+        //private readonly IFornecedorRepository _fornecedorRepository;
+        //private IMapper _mapper;
+
+        //public FornecedorController(
+        //	IFornecedorRepository fornecedorRepository,
+        //	IMapper mapper)
+        //{
+        //	_fornecedorRepository = fornecedorRepository;
+        //	_mapper = mapper;
+        //}
 
         //[Authorize]
         [Route("Cadastrar")]
         [HttpPost]
-		public async Task<IActionResult> Cadastrar([FromForm] FornecedorViewModel fornecedor)
-		{
-            if (!ModelState.IsValid) return BadRequest(ModelState);
-
-            ValidDoc validDoc = null;
-            if (fornecedor.TipoFornecedor == EnumTipoFornecedor.Fisico)
+		public IActionResult Cadastrar(
+            [FromForm] FornecedorViewModel fornecedor)
+        {
+            try
             {
-                validDoc = await DocValidation.ValidCPF(fornecedor.Documento);
-                if(!validDoc.Status) return Ok(new { success = false, mensagem = validDoc.Message });
-            }
-            if (fornecedor.TipoFornecedor == EnumTipoFornecedor.Juridico)
-            {
-                validDoc = await DocValidation.ValidCNPJ(fornecedor.Documento);
-                if (!validDoc.Status) return Ok(new { success = false, mensagem = validDoc.Message });
-            }
+                if (!ModelState.IsValid) return BadRequest(ModelState);
 
-            if (fornecedor.ImageFile != null)
-            {
-                var imageName = Guid.NewGuid() + "_" + fornecedor.ImageFile.FileName;
-                var validFile = await ImageValidation.UploadImage(fornecedor.ImageFile, imageName);
-                if (!validFile.Status) return Ok(new { success = false, mensagem = validFile.Message });
-                fornecedor.Imagem = Path.Combine(Directory.GetCurrentDirectory(), "Content/Images/", imageName);
-            }
-            else fornecedor.Imagem = "";
+                _fornecedorService.Cadastrar(fornecedor);
 
-            fornecedor.Documento = validDoc.Numbers;
-            fornecedor.Ativo = true;
-            _fornecedorRepository.Cadastrar(_mapper.Map<Fornecedor>(fornecedor));
-            return Ok(new { success = true, mensagem = "Fornecedor Cadastrado com sucesso" });
+                return Ok(new { status = 200, message = "Fornecedor cadastrado com sucesso!" });
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { success = false, mensagem = ex.Message });
+            }
+            //          ValidDoc validDoc = null;
+            //          if (fornecedor.TipoFornecedor == EnumTipoFornecedor.Fisico)
+            //          {
+            //              validDoc = await DocValidation.ValidCPF(fornecedor.Documento);
+            //              if(!validDoc.Status) return Ok(new { success = false, mensagem = validDoc.Message });
+            //          }
+            //          if (fornecedor.TipoFornecedor == EnumTipoFornecedor.Juridico)
+            //          {
+            //              validDoc = await DocValidation.ValidCNPJ(fornecedor.Documento);
+            //              if (!validDoc.Status) return Ok(new { success = false, mensagem = validDoc.Message });
+            //          }
+
+            //          if (fornecedor.ImageFile != null)
+            //          {
+            //              var imageName = Guid.NewGuid() + "_" + fornecedor.ImageFile.FileName;
+            //              var validFile = await ImageValidation.UploadImage(fornecedor.ImageFile, imageName);
+            //              if (!validFile.Status) return Ok(new { success = false, mensagem = validFile.Message });
+            //              fornecedor.Imagem = Path.Combine(Directory.GetCurrentDirectory(), "Content/Images/", imageName);
+            //          }
+            //          else fornecedor.Imagem = "";
+
+            //          fornecedor.Documento = validDoc.Numbers;
+            //          fornecedor.Ativo = true;
+            //          _fornecedorRepository.Cadastrar(_mapper.Map<Fornecedor>(fornecedor));
+            //          return Ok(new { success = true, mensagem = "Fornecedor Cadastrado com sucesso" });
         }
 
         //[Authorize]
@@ -75,6 +85,7 @@ namespace Aula01.Controllers
         [HttpPut]
         public async Task<IActionResult> Atualizar(int Id, [FromForm] FornecedorViewModel fornecedor)
         {
+            /*
             if (!ModelState.IsValid) return BadRequest(ModelState);
 
             var buscarFornecedor = _fornecedorRepository.ObterFornecedorId(Id);
@@ -93,6 +104,7 @@ namespace Aula01.Controllers
             }
 
             _fornecedorRepository.Atualizar(_mapper.Map<Fornecedor>(buscarFornecedor));
+            */
             return Ok(new { status = 200, message = "Fornecedor atualizado com sucesso!" });
         }
 
