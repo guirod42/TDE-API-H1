@@ -9,6 +9,17 @@ namespace Aula01.Domain.Validations
 {
     public static class ImageValidation
     {
+        public class ValidImage
+        {
+            public ValidImage(string message, bool status)
+            {
+                Message = message;
+                Status = status;
+            }
+
+            public string Message { get; set; }
+            public bool Status { get; set; }
+        }
         private static bool Extension(string ext)
         {
             List<string> exts = new List<string>();
@@ -20,7 +31,7 @@ namespace Aula01.Domain.Validations
             else return false;
         }
 
-        public static async Task<ValidImage> UploadImage(IFormFile image, string imgName)
+        public static ValidImage UploadImage(IFormFile image, string imgName)
         {
             int largPx = 1200;
             int compPx = 1200;
@@ -30,22 +41,18 @@ namespace Aula01.Domain.Validations
             string ext = checkFileExt[1];
             if (image == null || image.Length == 0 || image.Length > imgSize)
             {
-                return new ValidImage() { Status = false, Message = $"Imagem excede o limite de tamanho" };
+                return new ValidImage("Imagem excede o limite de tamanho", false);
             }
             var path = Path.Combine(Directory.GetCurrentDirectory(), "Content/Images", imgName);
             using (var stream = new FileStream(path, FileMode.Create))
             {
-                await image.CopyToAsync(stream);
+                image.CopyToAsync(stream);
             }
             if (Extension(ext))
-                return new ValidImage() { Status = true, Message = "Upload de imagem realizado" };
-            else return new ValidImage() { Status = false, Message = "Extensão inválida" };
+                return new ValidImage("Upload de imagem realizado", true);
+            else return new ValidImage("Extensão inválida", false);
         }
     }
 
-    public class ValidImage 
-    {
-        public string Message { get; set; }
-        public bool Status { get; set; }
-    }
+
 }

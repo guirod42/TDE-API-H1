@@ -6,25 +6,37 @@ using System.Threading.Tasks;
 
 namespace Aula01.Domain.Validations
 {
+
+    public class ValidDoc
+    {
+        public ValidDoc(string message, bool status, string numbers)
+        {
+            Message = message;
+            Status = status;
+            Numbers = numbers;
+        }
+
+        public string Message { get; set; }
+        public bool Status { get; set; }
+        public string Numbers { get; set; }
+    }
+
     public static class DocValidation
     {
-        public static async Task<ValidDoc> ValidCPF(string cpf)
+        public static ValidDoc ValidCPF(string cpf)
         {
-            if (!CpfValidacao.Validar(cpf))
-            {
-                return new ValidDoc() { Status = false, Message = "Documento inválido" };
-            }
-            else return new ValidDoc() { Status = true, Message = "Documento válido", Numbers = Utils.ApenasNumeros(cpf) };
+            return !CpfValidacao.Validar(cpf)
+                ? new ValidDoc("Documento inválido", false, Utils.ApenasNumeros(cpf))
+                : new ValidDoc("Documento válido", true, Utils.ApenasNumeros(cpf));
         }
-        public static async Task<ValidDoc> ValidCNPJ(string cnpj)
+        
+        public static ValidDoc ValidCNPJ(string cnpj)
         {
-            if (!CnpjValidacao.Validar(cnpj))
-            {
-                return new ValidDoc() { Status = false, Message = "Documento inválido" };
-            }
-            else return new ValidDoc() { Status = true, Message = "Documento válido", Numbers = Utils.ApenasNumeros(cnpj) };
-
+            return !CnpjValidacao.Validar(cnpj)
+                ? new ValidDoc("Documento inválido", false, Utils.ApenasNumeros(cnpj))
+                : new ValidDoc("Documento válido", true, Utils.ApenasNumeros(cnpj));
         }
+        
         private class CpfValidacao
         {
             public const int TamanhoCpf = 11;
@@ -195,11 +207,5 @@ namespace Aula01.Domain.Validations
                 return onlyNumber.Trim();
             }
         }
-    }
-    public class ValidDoc
-    {
-        public string Message { get; set; }
-        public bool Status { get; set; }
-        public string Numbers { get; set; }
     }
 }

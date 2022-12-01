@@ -30,6 +30,7 @@ namespace Aula01.Model
         [SwaggerSchema(ReadOnly = true)]
         public bool Ativo { get; set; }
 
+        /*
         [SwaggerSchema(ReadOnly = true)]
         public string CriadoPor { get; set; }
 
@@ -41,5 +42,6 @@ namespace Aula01.Model
 
         [SwaggerSchema(ReadOnly = true)]
         public DateTime AtualizadoEm { get; set; }
+        */
     }
 }

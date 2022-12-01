@@ -35,31 +35,33 @@ namespace Aula01.Services
             _fornecedorRepository.Atualizar(_mapper.Map<Fornecedor>(buscarFornecedor));
         }
 
-        public async Task Cadastrar(FornecedorViewModel fornecedor)
+        public void Cadastrar(FornecedorViewModel fornecedor)
         {
-            ValidDoc validDoc = null;
+            ValidDoc validDoc = null;            
+            string docNormalizado = "";
             if (fornecedor.TipoFornecedor == EnumTipoFornecedor.Fisico)
             {
-                validDoc = await DocValidation.ValidCPF(fornecedor.Documento);
-                if (!validDoc.Status) throw new Exception(validDoc.Message);
+                validDoc = DocValidation.ValidCPF(fornecedor.Documento);
+                docNormalizado = validDoc.Numbers;
+                if (validDoc.Status == false) throw new Exception(validDoc.Message);
             }
             if (fornecedor.TipoFornecedor == EnumTipoFornecedor.Juridico)
             {
-                validDoc = await DocValidation.ValidCNPJ(fornecedor.Documento);
-                if (!validDoc.Status) throw new Exception(validDoc.Message);
+                validDoc = DocValidation.ValidCNPJ(fornecedor.Documento);
+                docNormalizado = validDoc.Numbers;
+                if (validDoc.Status == false) throw new Exception(validDoc.Message);
             }
-
+            
             if (fornecedor.ImageFile != null)
             {
                 var imageName = Guid.NewGuid() + "_" + fornecedor.ImageFile.FileName;
-                var validFile = await ImageValidation.UploadImage(fornecedor.ImageFile, imageName);
-                if (!validFile.Status) throw new Exception(validFile.Message);
+                var validFile = ImageValidation.UploadImage(fornecedor.ImageFile, imageName);
                 //return Ok(new { success = false, mensagem = validFile.Message });
+                if (validFile.Status == false) throw new Exception(validFile.Message);
                 fornecedor.Imagem = Path.Combine(Directory.GetCurrentDirectory(), "Content/Images/", imageName);
             }
             else fornecedor.Imagem = "";
-
-            fornecedor.Documento = validDoc.Numbers;
+            fornecedor.Documento = docNormalizado;
             fornecedor.Ativo = true;
             _fornecedorRepository.Cadastrar(_mapper.Map<Fornecedor>(fornecedor));
         }

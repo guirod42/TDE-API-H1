@@ -53,31 +53,6 @@ namespace Aula01.Controllers
             {
                 return BadRequest(new { success = false, mensagem = ex.Message });
             }
-            //          ValidDoc validDoc = null;
-            //          if (fornecedor.TipoFornecedor == EnumTipoFornecedor.Fisico)
-            //          {
-            //              validDoc = await DocValidation.ValidCPF(fornecedor.Documento);
-            //              if(!validDoc.Status) return Ok(new { success = false, mensagem = validDoc.Message });
-            //          }
-            //          if (fornecedor.TipoFornecedor == EnumTipoFornecedor.Juridico)
-            //          {
-            //              validDoc = await DocValidation.ValidCNPJ(fornecedor.Documento);
-            //              if (!validDoc.Status) return Ok(new { success = false, mensagem = validDoc.Message });
-            //          }
-
-            //          if (fornecedor.ImageFile != null)
-            //          {
-            //              var imageName = Guid.NewGuid() + "_" + fornecedor.ImageFile.FileName;
-            //              var validFile = await ImageValidation.UploadImage(fornecedor.ImageFile, imageName);
-            //              if (!validFile.Status) return Ok(new { success = false, mensagem = validFile.Message });
-            //              fornecedor.Imagem = Path.Combine(Directory.GetCurrentDirectory(), "Content/Images/", imageName);
-            //          }
-            //          else fornecedor.Imagem = "";
-
-            //          fornecedor.Documento = validDoc.Numbers;
-            //          fornecedor.Ativo = true;
-            //          _fornecedorRepository.Cadastrar(_mapper.Map<Fornecedor>(fornecedor));
-            //          return Ok(new { success = true, mensagem = "Fornecedor Cadastrado com sucesso" });
         }
 
         //[Authorize]

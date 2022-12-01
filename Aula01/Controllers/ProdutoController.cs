@@ -30,6 +30,7 @@ namespace Aula01.Controllers
         [HttpPost]
 		public async Task<IActionResult> Cadastrar([FromForm] ProdutoViewModel produto)
 		{
+            /*
 			if (!ModelState.IsValid) return BadRequest(ModelState);
 			if (produto.ImageFile != null)
 			{
@@ -43,6 +44,7 @@ namespace Aula01.Controllers
             produto.Ativo = true;
 
 			_produtoRepository.Cadastrar(_mapper.Map<Produto>(produto));
+            */
 			return Ok(new { success = true, mensagem = "Produto Cadastrado com sucesso" });
         }
 
@@ -62,10 +64,12 @@ namespace Aula01.Controllers
 
             if (produto.ImageFile != null)
             {
+                /*
                 var imageName = Guid.NewGuid() + "_" + produto.ImageFile.FileName;
                 var validFile = await ImageValidation.UploadImage(produto.ImageFile, imageName);
                 if (!validFile.Status) return Ok(new { success = false, mensagem = validFile.Message });
                 buscarProduto.Imagem = Path.Combine(Directory.GetCurrentDirectory(), "Content/Images/", imageName);
+                */
             }
 
             _produtoRepository.Atualizar(_mapper.Map<Produto>(buscarProduto));
