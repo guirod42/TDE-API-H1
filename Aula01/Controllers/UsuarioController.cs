@@ -42,7 +42,8 @@ namespace Aula01.Controllers
             {
                 return new
                 {
-                    Situacao = "O usuário " + buscaUsuario.UserName + " está desativado, solicite que um Adm reative o usuário!"
+                    Situacao = "A conta do usuário " + buscaUsuario.UserName + " está desativada. Solicite que um Adm reative o usuário!"
+
                 };
             }
 
@@ -71,14 +72,23 @@ namespace Aula01.Controllers
         [Authorize]
         [Route("Atualizar")]
         [HttpPut]
-        public IActionResult Atualizar(string usuario, string senha, string senharepetida)
+        public IActionResult Atualizar([FromForm] UsuarioViewModel usuario, string novasenha, string senharepetida)
         {
-            if (senha != senharepetida) return NotFound(new { status = 404, message = "Repita a nova senha duas vezes!!" });
             if (!ModelState.IsValid) return BadRequest(ModelState);
-            var buscarUsuario = _usuarioRepository.Localizar(usuario);
-            if (buscarUsuario == null) return NotFound(new { status = 404, message = "Usuario não existe" });
-            buscarUsuario.Password = senha;
-            _usuarioRepository.Atualizar(_mapper.Map<Usuario>(buscarUsuario));
+
+            // Localiza o usuario
+            var buscaUsuario = _usuarioRepository.Autenticar(_mapper.Map<Usuario>(usuario));
+
+            // Verifica a existência
+            if (buscaUsuario == null)
+                return NotFound(new { message = "Usuário não existe e/ou Senha inválida" });
+
+            if (novasenha != senharepetida) return NotFound(new { status = 404, message = "Repita a nova senha duas vezes!!" });
+
+            //var buscarUsuario = _usuarioRepository.Localizar(usuario);
+            //if (buscarUsuario == null) return NotFound(new { status = 404, message = "Usuario não existe" });
+            buscaUsuario.Password = novasenha;
+            _usuarioRepository.Atualizar(_mapper.Map<Usuario>(buscaUsuario));
             return Ok(new { status = 200, message = "Senha atualizada!" });
         }
 
@@ -103,7 +113,5 @@ namespace Aula01.Controllers
             _usuarioRepository.Desativar(buscarUsuario);
             return Ok(new { status = 200, message = "Usuário desativado!" });
         }
-
-        // No usuario controller criar as ações de inserir um usuario e atualizar
     }
 }

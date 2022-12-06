@@ -9,10 +9,7 @@ using System.Text;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using Aula01.Services;
-/*23-11-2022 17:58*/
 var builder = WebApplication.CreateBuilder(args);
-
-// Add services to the container.
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -55,12 +52,6 @@ builder.Services.AddSwaggerGen(c =>
               });
 
 });
-/*
-builder.Services.AddSwaggerGen(options =>
-{
-	options.EnableAnnotations();
-});
-*/
 builder.Services.AddDbContext<GestaoProdutoContext>(o => o.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 builder.Services.AddAutoMapper(typeof(DomainToApplication), typeof(ApplicationToDomain));
 
@@ -96,8 +87,6 @@ builder.Services.AddSwaggerGen(options =>
 {
     options.EnableAnnotations();
 });
-
-
 
 var app = builder.Build();
 

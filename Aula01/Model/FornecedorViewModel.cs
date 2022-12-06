@@ -29,19 +29,5 @@ namespace Aula01.Model
 
         [SwaggerSchema(ReadOnly = true)]
         public bool Ativo { get; set; }
-
-        /*
-        [SwaggerSchema(ReadOnly = true)]
-        public string CriadoPor { get; set; }
-
-        [SwaggerSchema(ReadOnly = true)]
-        public DateTime CriadoEm { get; set; }
-
-        [SwaggerSchema(ReadOnly = true)]
-        public string AtualizadoPor { get; set; }
-
-        [SwaggerSchema(ReadOnly = true)]
-        public DateTime AtualizadoEm { get; set; }
-        */
     }
 }

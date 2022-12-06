@@ -24,17 +24,6 @@ namespace Aula01.Controllers
             _fornecedorService = fornecedorService;
         }
 
-        //private readonly IFornecedorRepository _fornecedorRepository;
-        //private IMapper _mapper;
-
-        //public FornecedorController(
-        //	IFornecedorRepository fornecedorRepository,
-        //	IMapper mapper)
-        //{
-        //	_fornecedorRepository = fornecedorRepository;
-        //	_mapper = mapper;
-        //}
-
         //[Authorize]
         [Route("Cadastrar")]
         [HttpPost]
@@ -60,27 +49,18 @@ namespace Aula01.Controllers
         [HttpPut]
         public async Task<IActionResult> Atualizar(int Id, [FromForm] FornecedorViewModel fornecedor)
         {
-            /*
-            if (!ModelState.IsValid) return BadRequest(ModelState);
-
-            var buscarFornecedor = _fornecedorRepository.ObterFornecedorId(Id);
-            if (buscarFornecedor == null) return NotFound(new { status = 404, message = "Fornecedor não encontrado" });
-
-            if (buscarFornecedor.Nome != null) buscarFornecedor.Nome = fornecedor.Nome;
-            if (buscarFornecedor.TipoFornecedor != null) buscarFornecedor.TipoFornecedor = fornecedor.TipoFornecedor;            
-            if (buscarFornecedor.Documento != null) buscarFornecedor.Documento = fornecedor.Documento;
-
-            if (fornecedor.ImageFile != null)
+            try
             {
-                var imageName = Guid.NewGuid() + "_" + fornecedor.ImageFile.FileName;
-                var validFile = await ImageValidation.UploadImage(fornecedor.ImageFile, imageName);
-                if (!validFile.Status) return Ok(new { success = false, mensagem = validFile.Message });
-                buscarFornecedor.Imagem = Path.Combine(Directory.GetCurrentDirectory(), "Content/Images/", imageName);
-            }
+                if (!ModelState.IsValid) return BadRequest(ModelState);
 
-            _fornecedorRepository.Atualizar(_mapper.Map<Fornecedor>(buscarFornecedor));
-            */
-            return Ok(new { status = 200, message = "Fornecedor atualizado com sucesso!" });
+                _fornecedorService.Atualizar(fornecedor);
+
+                return Ok(new { status = 200, message = "Fornecedor Atualizado com sucesso!" });
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { success = false, mensagem = ex.Message });
+            }
         }
 
         //[Authorize]

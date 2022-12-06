@@ -31,7 +31,36 @@ namespace Aula01.Services
         {
             var buscarFornecedor = _fornecedorRepository.ObterFornecedorId(fornecedor.Id);
             if (buscarFornecedor == null) throw new Exception("Fornecedor não encontrado");
-            buscarFornecedor.Nome = fornecedor.Nome;
+
+            if (fornecedor.Nome != null) buscarFornecedor.Nome = fornecedor.Nome;
+
+            if (fornecedor.Documento != null)
+            {
+                ValidDoc validDoc = null;
+                string docNormalizado = "";
+                if (fornecedor.TipoFornecedor == EnumTipoFornecedor.Fisico)
+                {
+                    validDoc = DocValidation.ValidCPF(fornecedor.Documento);
+                    docNormalizado = validDoc.Numbers;
+                    if (validDoc.Status == false) throw new Exception(validDoc.Message);
+                }
+                if (fornecedor.TipoFornecedor == EnumTipoFornecedor.Juridico)
+                {
+                    validDoc = DocValidation.ValidCNPJ(fornecedor.Documento);
+                    docNormalizado = validDoc.Numbers;
+                    if (validDoc.Status == false) throw new Exception(validDoc.Message);
+                }
+                buscarFornecedor.Documento = docNormalizado;
+            }
+
+            if (fornecedor.ImageFile != null)
+            {
+                var imageName = Guid.NewGuid() + "_" + fornecedor.ImageFile.FileName;
+                var validFile = ImageValidation.UploadImage(fornecedor.ImageFile, imageName);
+                //return Ok(new { success = false, mensagem = validFile.Message });
+                if (validFile.Status == false) throw new Exception(validFile.Message);
+                fornecedor.Imagem = Path.Combine(Directory.GetCurrentDirectory(), "Content/Images/", imageName);
+            }
             _fornecedorRepository.Atualizar(_mapper.Map<Fornecedor>(buscarFornecedor));
         }
 
